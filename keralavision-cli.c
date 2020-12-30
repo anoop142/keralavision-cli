@@ -300,7 +300,7 @@ void print_gauge_data(char *gauge_id, char *page_str)
 int connect_kv(struct App *app ,struct webpage *page){
 	int rc =-1;
 
-	if(app->UserName[0] == '\0'){
+	if(app->UserName[0] == 0){
 		printf("Enter KV Username : ");
 		scanf("%s",app->UserName);
 		printf("\n");
