@@ -10,7 +10,7 @@ all: $(TARGET)
 
 
 $(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(LIBS)  $(SRC) -o $(TARGET)
+	$(CC) -o $(TARGET) $(CFLAGS) $(SRC) $(LIBS)
 
 install: all
 	strip $(TARGET)
