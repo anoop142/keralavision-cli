@@ -25,8 +25,8 @@ struct App{
 	const char *gauge_url;
 	char EVENTVALIDATION[MAX_LINE];
 	char VIEWSTATE[MAX_LINE];
-	char UserName [128];
-	char Password [128];
+	char UserName [MAX_CREDS];
+	char Password [MAX_CREDS];
 };
 
 struct webpage {
@@ -172,9 +172,6 @@ char* extract_gauge(const char *gauge_data_to_extract,char *page_string, char *g
 	char line[MAX_LINE];
 	char *found;
 
-	/* clear  */
-	memset(gauge_data_dest, 0, 255);
-
 	while(sgets(line , MAX_LINE-1, &page_string)){
 		found = strstr(line,gauge_data_to_extract);
 		if(found != NULL){
@@ -254,9 +251,9 @@ int get_gauge_page(struct App *app,struct webpage *page){
 }
 
 void print_all_gauge_data(struct Gauge *gauge, char *page_str){
-	char gauge_dest[256];
-	char total_data[32];
-	char total_used[32];
+	char gauge_dest[64];
+	char total_data[64];
+	char total_used[64];
 	char remaining_data_str[64];
 	char plan_name[64];
 	extract_gauge(gauge->total_usage_id, page_str, total_used);
