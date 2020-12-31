@@ -286,7 +286,6 @@ void print_all_gauge_data(struct Gauge *gauge, char *page_str){
 	printf("\n* Remaing Data : %s\n",remaining_data_str);
 	printf("\n* Session : %s\n", (extract_gauge(gauge->session_id ,page_str,gauge_dest)+6));
 	printf("\n* Expires on : %s\n",extract_gauge(gauge->expiry_id ,page_str,gauge_dest));
-	printf("\n* IP Address : %s\n",extract_gauge(gauge->ip_id ,page_str,gauge_dest));
 }
 
 void print_gauge_data(char *gauge_id, char *page_str)
