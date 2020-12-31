@@ -17,4 +17,4 @@ install: all
 	cp $(TARGET) $(LOCATION)
 
 clean:
-	rm -rf $(TARGET)
+	rm -f $(TARGET)
