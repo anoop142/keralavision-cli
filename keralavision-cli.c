@@ -217,13 +217,15 @@ int get_gauge_page(struct App *app,struct webpage *page){
 	if(curl) {
 		char user_creds[512];
 		/* Encode post params */
-		const char *view_encoded = curl_easy_escape(curl, app->VIEWSTATE, strlen(app->VIEWSTATE));
+		char *view_encoded = curl_easy_escape(curl, app->VIEWSTATE, strlen(app->VIEWSTATE));
 		strcpy(post_params,"__VIEWSTATE=");
 		strcat(post_params,view_encoded);
+		curl_free(view_encoded);
 
-		const char *event_encoded = curl_easy_escape(curl, app->EVENTVALIDATION, strlen(app->EVENTVALIDATION));
+		char *event_encoded = curl_easy_escape(curl, app->EVENTVALIDATION, strlen(app->EVENTVALIDATION));
 		strcat(post_params,"&__EVENTVALIDATION=");
 		strcat(post_params,event_encoded);
+		curl_free(event_encoded);
 
 		snprintf(user_creds,511,"&txtUserName=%s&txtPassword=%s&hdnloginwith=username&save=Log+In&txtForgetCapcha=",app->UserName,app->Password);
 		strcat(post_params,user_creds);
