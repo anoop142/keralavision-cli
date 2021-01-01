@@ -265,16 +265,15 @@ void print_all_gauge_data(struct Gauge *gauge, char *page_str){
 		strcpy(remaining_data_str,"Unlimited");
 	}
 	else{
-		for(int i=0,j=0; i < strlen(plan_name); i++){
-			if(plan_name[i] == 'M'){
-				i++;
-				while(isdigit(plan_name[i])){
-					total_data[j++] = plan_name[i++];
-				}
-				total_data[j] = '\0';
-				break;
+		int i;
+		char *found = strchr(plan_name, 'M');
+		if(found != NULL){
+			for(found++, i=0; isdigit(*found); found++, i++){
+				total_data[i] = *found;
 			}
+			total_data[i] = '\0';
 		}
+		
 		unsigned int remaining_data = atoi(total_data) - atoi(total_used);
 		sprintf(remaining_data_str,"%d GB",remaining_data);
 	}
