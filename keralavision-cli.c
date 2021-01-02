@@ -282,7 +282,7 @@ void print_all_gauge_data(struct Gauge *gauge, char *page_str){
 	printf("\t   %s\n",plan_name);
 	printf("===================================\n");
 	printf("* Total Used Data : %s / %s GB\n", total_used, total_data);
-	printf("\n* Remaing Data : %s\n",remaining_data_str);
+	printf("\n* Remaining Data : %s\n",remaining_data_str);
 	printf("\n* Session : %s\n", (extract_gauge(gauge->session_id ,page_str,gauge_dest)+6));
 	printf("\n* Expires on : %s\n",extract_gauge(gauge->expiry_id ,page_str,gauge_dest));
 }
