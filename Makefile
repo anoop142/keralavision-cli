@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -O2 
 LIBS=-lcurl
-LOCATION=/usr/local/bin
+INSTALL_DIR=/usr/local/bin
 SRC= keralavision-cli.c
 TARGET=kv-cli
 
@@ -13,8 +13,7 @@ $(TARGET): $(SRC)
 	$(CC) -o $(TARGET) $(CFLAGS) $(SRC) $(LIBS)
 
 install: all
-	strip $(TARGET)
-	cp $(TARGET) $(LOCATION)
+	install -s $(TARGET) $(INSTALL_DIR)
 
 clean:
 	rm -f $(TARGET)
