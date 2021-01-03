@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <termios.h>
 
-
+#define VERSION "1.0"
 #define MAX_LINE 4096
 #define MAX_CREDS 128
 
@@ -329,6 +329,7 @@ int  main(int argc, char **argv){
 
 	const char usage[] = "usage: %s [-h] [-u username]  mode\n";
 	const char modes[] = "expiry, plan, mac, ip, session, total_usage";
+	const char *about = "kv-cli version v%s\n";
 
 	char gauge_id[32];
 	int i= 0;
@@ -338,6 +339,7 @@ int  main(int argc, char **argv){
 
 	if(argc >1){
 		if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1],"--help") == 0 ){
+			printf(about,VERSION);
 			printf(usage, argv[0]);
 			printf("\tmodes :%s\n",modes);
 			exit(EXIT_SUCCESS);
