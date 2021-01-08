@@ -328,7 +328,7 @@ int  main(int argc, char **argv){
 						.expiry_id = "lblExpiryDate", .mac_id = "lblMacAddress", .ip_id = "lblFreameIP"};
 
 	const char usage[] = "usage: %s [-h] [-u username]  mode\n";
-	const char modes[] = "expiry, plan, mac, ip, session, total_usage";
+	const char *modes[] = {"expiry", "plan", "mac", "ip", "session", "total_usage"};
 	const char *about = "kv-cli version v%s\n";
 
 	char gauge_id[32];
@@ -341,7 +341,10 @@ int  main(int argc, char **argv){
 		if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1],"--help") == 0 ){
 			printf(about,VERSION);
 			printf(usage, argv[0]);
-			printf("\tmodes :%s\n",modes);
+			printf("\nmode: \n");
+			for(int i=0; i < strlen(modes); i++){
+				printf("\t%s\n",modes[i]);
+			}
 			exit(EXIT_SUCCESS);
 		}
 		for(i = 1; i < argc; i++ ){
