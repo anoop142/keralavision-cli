@@ -360,7 +360,7 @@ int  main(int argc, char **argv){
 			else if(strcmp(argv[i], "expiry") == 0) {
 				strcpy(gauge_id, gauge.expiry_id);
 			}
-			else if(strcmp(argv[i], "total_usage") == 0) {
+			else if(strcmp(argv[i], "usage") == 0) {
 				strcpy(gauge_id, gauge.total_usage_id);
 			}
 			else if(strcmp(argv[i], "session") == 0) {
