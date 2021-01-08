@@ -328,7 +328,7 @@ int  main(int argc, char **argv){
 						.expiry_id = "lblExpiryDate", .mac_id = "lblMacAddress", .ip_id = "lblFreameIP"};
 
 	const char usage[] = "usage: %s [-h] [-u username]  mode\n";
-	const char *modes[] = {"expiry", "plan", "mac", "ip", "session", "total_usage"};
+	const char *modes[] = {"all", "expiry", "plan", "mac", "ip", "session", "usage"};
 	const char *about = "kv-cli version v%s\n";
 
 	char gauge_id[32];
