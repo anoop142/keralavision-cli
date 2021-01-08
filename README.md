@@ -40,7 +40,7 @@ libcurl
         ip
             Prints the ip address
 
-        total_data
+        usage
             Priints total used data
         
         session
