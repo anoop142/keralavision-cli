@@ -126,12 +126,14 @@ int get_webpage(const char *url, struct webpage *page){
 
   CURL *curl;
   CURLcode res;
+  long timeout = 10L;
 
   curl = curl_easy_init();
   if(curl) {
     init_webpage(page);
 
     curl_easy_setopt(curl, CURLOPT_URL, url);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeout);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, page);
     res = curl_easy_perform(curl);
@@ -171,7 +173,6 @@ int extract_token(const char *token_name, char *page_string, char *token_dest){
 char* extract_gauge(const char *gauge_data_to_extract,char *page_string, char *gauge_data_dest){
 	char line[MAX_LINE];
 	char *found;
-
 	while(sgets(line , MAX_LINE-1, &page_string)){
 		found = strstr(line,gauge_data_to_extract);
 		if(found != NULL){
@@ -208,6 +209,7 @@ int get_gauge_page(struct App *app,struct webpage *page){
 
 	char post_params[10240];
 	long response_code;
+	long timeout = 10L;
 
 	CURL *curl;
 	CURLcode res;
@@ -236,7 +238,7 @@ int get_gauge_page(struct App *app,struct webpage *page){
 		/* Login */
 		curl_easy_setopt(curl, CURLOPT_URL, app->login_url);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_null);
-
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeout);
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_params);
 		curl_easy_setopt(curl, CURLOPT_COOKIEFILE, ""); /* start cookie engine */ 
 		res = curl_easy_perform(curl);
