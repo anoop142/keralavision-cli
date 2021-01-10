@@ -210,7 +210,8 @@ int get_gauge_page(struct App *app,struct webpage *page){
 	char post_params[10240];
 	long response_code;
 	long timeout = 10L;
-
+	long login_success_code = 302;
+	
 	CURL *curl;
 	CURLcode res;
 
@@ -245,7 +246,7 @@ int get_gauge_page(struct App *app,struct webpage *page){
 		check_fail(res != CURLE_OK, "curl_easy_perform() failed: %s",curl_easy_strerror(res));
 
     	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
-		check_fail(response_code != 302, "Wrong Username or Passsword");
+		check_fail(response_code != login_success_code, "Wrong Username or Passsword");
 		/* Get gauge webpage */
 		curl_easy_setopt(curl, CURLOPT_URL, app->gauge_url);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
