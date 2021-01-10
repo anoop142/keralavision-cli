@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <termios.h>
 
-#define VERSION "1.0"
+#define VERSION "1.5"
 #define MAX_LINE 4096
 #define MAX_CREDS 128
 
@@ -211,7 +211,7 @@ int get_gauge_page(struct App *app,struct webpage *page){
 	long response_code;
 	long timeout = 10L;
 	long login_success_code = 302;
-	
+
 	CURL *curl;
 	CURLcode res;
 
