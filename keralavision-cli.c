@@ -191,7 +191,7 @@ char* extract_gauge(const char *gauge_data_to_extract,char *page_string, char *g
 		}
 	}
 
-	check_fail(found == NULL,"Cannot extract %s\nProbably wrong Password",gauge_data_to_extract);
+	check_fail(found == NULL,"Cannot extract %s\n",gauge_data_to_extract);
 	return gauge_data_dest;
 }
 
@@ -207,6 +207,7 @@ int get_all_tokens(struct webpage *page, struct App *app){
 int get_gauge_page(struct App *app,struct webpage *page){
 
 	char post_params[10240];
+	long response_code;
 
 	CURL *curl;
 	CURLcode res;
@@ -240,6 +241,9 @@ int get_gauge_page(struct App *app,struct webpage *page){
 		curl_easy_setopt(curl, CURLOPT_COOKIEFILE, ""); /* start cookie engine */ 
 		res = curl_easy_perform(curl);
 		check_fail(res != CURLE_OK, "curl_easy_perform() failed: %s",curl_easy_strerror(res));
+
+    	curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &response_code);
+		check_fail(response_code != 302, "Wrong Username or Passsword");
 		/* Get gauge webpage */
 		curl_easy_setopt(curl, CURLOPT_URL, app->gauge_url);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
