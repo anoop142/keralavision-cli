@@ -1,7 +1,7 @@
 # keralavision-cli
 A Command Line Utility to display information about your Kerala Vision Broad band by scraping the webpage.
 
-Written in C (C99) without using any html parsing libraries.
+Written in C (C99) without using any html parsing libraries for no specific reasons.
 
 ## Dependency
 libcurl
