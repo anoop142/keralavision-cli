@@ -315,9 +315,10 @@ int connect_kv(struct App *app ,struct webpage *page){
 		scanf("%s",app->UserName);
 		printf("\n");
 	}
-
-	rc = get_password(app, MAX_CREDS);
-	check_fail(rc == -1,"cannot get Password");
+	if(app->Password == 0){
+		rc = get_password(app, MAX_CREDS);
+		check_fail(rc == -1,"cannot get Password");
+	}
 
 	/* Get tokens for log in  */
 	get_webpage(app->base_url, page);
@@ -346,9 +347,9 @@ int  main(int argc, char **argv){
 
 	char gauge_id[32];
 	int i= 0;
-	/* init username and gauge_id */
 	gauge_id[0] = 0;
 	app.UserName[0] = 0;
+	app.Password[0] = 0;
 
 	if(argc >1){
 		if(strcmp(argv[1], "-h") == 0 || strcmp(argv[1],"--help") == 0 ){
@@ -364,6 +365,12 @@ int  main(int argc, char **argv){
 			if(strcmp(argv[i], "-u") == 0){
 				if(++i < argc){
 					strncpy(app.UserName, argv[i], MAX_CREDS-1);
+				}
+				continue;
+			}
+			if(strcmp(argv[i], "-p") == 0){
+				if(++i < argc){
+					strncpy(app.Password, argv[i], MAX_CREDS-1);
 				}
 				continue;
 			}
