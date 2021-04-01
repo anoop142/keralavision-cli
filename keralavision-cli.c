@@ -265,6 +265,7 @@ void print_all_gauge_data(struct Gauge *gauge, char *page_str){
 	char total_used[64];
 	char remaining_data_str[64];
 	char plan_name[64];
+	float remaining_data;
 	const char *session_skip_str = "Usage:";
 
 	extract_gauge(gauge->total_usage_id, page_str, total_used);
@@ -282,9 +283,12 @@ void print_all_gauge_data(struct Gauge *gauge, char *page_str){
 			}
 			total_data[i] = '\0';
 		}
-		
-		unsigned int remaining_data = atoi(total_data) - atoi(total_used);
-		sprintf(remaining_data_str,"%d GB",remaining_data);
+		if(strstr(total_used,"MB")){
+			remaining_data = atof(total_data) - (atof(total_used) / 1024);
+		}else{
+			remaining_data = atof(total_data) - atof(total_used);
+		}
+		sprintf(remaining_data_str,"%.2f GB",remaining_data);
 	}
 
 	printf("===================================\n");
