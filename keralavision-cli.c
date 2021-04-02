@@ -315,7 +315,7 @@ int connect_kv(struct App *app ,struct webpage *page){
 		scanf("%s",app->UserName);
 		printf("\n");
 	}
-	if(app->Password == 0){
+	if(app->Password[0] == 0){
 		rc = get_password(app, MAX_CREDS);
 		check_fail(rc == -1,"cannot get Password");
 	}
