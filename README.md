@@ -20,7 +20,7 @@ libcurl
          ./kv-cli
 
 ## Usage
-        kv-cli [-h]  [-u username] mode
+        kv-cli [-h]  [-u username] [-p password] mode
 
     mode : 
         mode is one of the following
