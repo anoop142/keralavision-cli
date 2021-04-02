@@ -341,7 +341,7 @@ int  main(int argc, char **argv){
 	struct Gauge gauge = {.total_usage_id="lblCurrentUsage",.session_id="lblTotalData",.plan_id="lblPlanName",
 						.expiry_id = "lblExpiryDate", .mac_id = "lblMacAddress", .ip_id = "lblFreameIP"};
 
-	const char usage[] = "usage: %s [-h] [-u username]  mode\n";
+	const char usage[] = "usage: %s [-h] [-u username] [-p password] mode\n";
 	const char *modes[] = {"all", "expiry", "plan", "mac", "ip", "session", "usage"};
 	const char *about = "kv-cli version v%s\n";
 
