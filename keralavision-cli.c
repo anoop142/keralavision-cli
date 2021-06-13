@@ -356,7 +356,7 @@ int  main(int argc, char **argv){
 			printf(about,VERSION);
 			printf(usage, argv[0]);
 			printf("\nmode: \n");
-			for(int i=0; i <= strlen(modes); i++){
+			for(int i=0; i < sizeof modes/ sizeof modes[0]; i++){
 				printf("\t%s\n",modes[i]);
 			}
 			exit(EXIT_SUCCESS);
