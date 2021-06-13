@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <termios.h>
 
-#define VERSION "1.5"
+#define VERSION "1.5.1"
 #define MAX_LINE 4096
 #define MAX_CREDS 128
 
